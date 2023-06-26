@@ -3,36 +3,46 @@
 {% block title %}Mon compte{% endblock %}
 
 {% block body %}
-<h2>Mon compte</h2>
-    <div class="container">
-        <p>email: {{ user.email }}</p>
-        <p>name : {{ user.name }}</p>
-    </div>
-    <h2>Mes fiches de personnages</h2>
+    <div class="container align-content-center">
+        <h2>Mon compte</h2>
+        <div class="container">
+            <p>email: {{ user.email }}</p>
+            <p>name : {{ user.name }}</p>
+            <a class="btn btn-success" href="{{ path('app_characterSheet_update',{'id':user.id}) }}">voir la feuille </a>
+        </div>
+        <h2>Mes fiches de personnages</h2>
+        <div>
+            new feuille de perso :
+            <td><a class="btn btn-primary" href="{{ path('app_characterSheet_new') }}">+</a></td>
+        </div>
 
 
-    <table class="table">
-        <thead class="thead-light">
-        <tr>
-            <th scope="col">id</th>
-            <th scope="col">nom</th>
-            <th scope="col">class</th>
-            <th scope="col">race</th>
-            <th scope="col">🔎</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for characterSheet in user.characterSheets  %}
+        <table class="table">
+            <thead class="thead-light">
             <tr>
-                <th scope="row">{{ characterSheet.id }}</th>
-                <td>{{ characterSheet.name }}</td>
-                <td>{{ characterSheet.class }}</td>
-                <td>{{ characterSheet.race }}</td>
-                <td><a class="btn btn-primary" href="{{ path('home_index') }}">voir la feuille </a></td>
+                <th scope="col">id</th>
+                <th scope="col">nom</th>
+                <th scope="col">class</th>
+                <th scope="col">race</th>
+                <th scope="col">🔎</th>
+                <th scope="col">🔎</th>
             </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            {% for characterSheet in user.characterSheets  %}
+                <tr>
+                    <th scope="row">{{ characterSheet.id }}</th>
+                    <td>{{ characterSheet.name }}</td>
+                    <td>{{ characterSheet.class }}</td>
+                    <td>{{ characterSheet.race }}</td>
+                    <td><a class="btn btn-success" href="{{ path('app_character_sheet',{'id':characterSheet.id}) }}">voir la feuille </a></td>
+                    <td><a class="btn btn-dark" href="{{ path('app_characterSheet_update',{'id':characterSheet.id}) }}">modifier la feuille </a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+        {% endblock %}
 
 
-{% endblock %}

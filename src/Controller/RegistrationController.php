@@ -14,9 +14,15 @@ use Symfony\Component\Routing\Annotation\Route;
 class RegistrationController extends AbstractController
 {
     #[Route('/register', name: 'app_register')]
+    #[Route('user/modifier/{id}', name: 'app_user_update', requirements:['id'=>'\d+'])]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
-        $user = new User();
+        if(is_null($this->getUser())){
+            $user = new User();
+        }else{
+            $user = $this->getUser();
+        }
+
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 

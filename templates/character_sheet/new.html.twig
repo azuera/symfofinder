@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+{{ form_start(form) }}
+    {{ form_row(form.name) }}
+    {{ form_row(form.race) }}
+    {{ form_row(form.class) }}
+
+    {{ form_row(form.initiative) }}
+    {{ form_row(form.hpMax) }}
+    {{ form_row(form.actualHp) }}
+    {{ form_row(form.mpMax) }}
+    {{ form_row(form.actualMp) }}
+    {{ form_row(form.strength) }}
+    {{ form_row(form.dexterity) }}
+    {{ form_row(form.stamina) }}
+    {{ form_row(form.intelligence) }}
+    {{ form_row(form.wisdom) }}
+    {{ form_row(form.luck) }}
+    <button type="submit" class="btn btn-primary">valider</button>
+{{ form_end(form) }}
+{% endblock %}

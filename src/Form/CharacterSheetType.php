@@ -15,7 +15,7 @@ class CharacterSheetType extends AbstractType
             ->add('name')
             ->add('race')
             ->add('class')
-            ->add('status')
+
             ->add('initiative')
             ->add('hpMax')
             ->add('actualHp')
@@ -27,8 +27,7 @@ class CharacterSheetType extends AbstractType
             ->add('intelligence')
             ->add('wisdom')
             ->add('luck')
-            ->add('game')
-            ->add('CharacterSheetUser')
+
         ;
     }
 

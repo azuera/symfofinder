@@ -11,6 +11,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 class UserController extends AbstractController
 {
     #[Route('/user', name: 'app_user_index')]
+
     #[IsGranted('ROLE_USER')]
     public function index(): Response
     {
