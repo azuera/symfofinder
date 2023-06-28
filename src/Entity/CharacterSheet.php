@@ -63,6 +63,7 @@ class CharacterSheet
     #[ORM\OneToMany(mappedBy: 'CharacterSheet', targetEntity: Equipement::class)]
     private Collection $equipements;
 
+    /** @var Collection<int, Skill>  */
     #[ORM\OneToMany(mappedBy: 'CharacterSheet', targetEntity: Skill::class)]
     private Collection $skills;
 

@@ -19,7 +19,7 @@ class Equipement
     #[ORM\Column]
     private ?int $damage = null;
 
-    #[ORM\Column]
+    #[ORM\Column(name: '`range`')]
     private ?int $range = null;
 
     #[ORM\ManyToOne(inversedBy: 'equipements')]

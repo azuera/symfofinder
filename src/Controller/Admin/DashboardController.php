@@ -47,5 +47,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('USER', 'fas fa-tags', User::class);
         yield MenuItem::linkToCrud('Charactere sheet', 'fas fa-tags', CharacterSheet::class);
         yield MenuItem::linkToCrud('Game', 'fas fa-tags', Game::class);
+        yield MenuItem::linkToUrl('API','fas fa-tags','/api');
     }
 }
