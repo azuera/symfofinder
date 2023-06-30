@@ -60,11 +60,11 @@ class CharacterSheet
     #[ORM\Column]
     private ?int $luck = null;
 
-    #[ORM\OneToMany(mappedBy: 'CharacterSheet', targetEntity: Equipement::class)]
+    #[ORM\OneToMany(mappedBy: 'CharacterSheet', targetEntity: Equipement::class,cascade:['persist','remove'] )]
     private Collection $equipements;
 
     /** @var Collection<int, Skill>  */
-    #[ORM\OneToMany(mappedBy: 'CharacterSheet', targetEntity: Skill::class)]
+    #[ORM\OneToMany(mappedBy: 'CharacterSheet', targetEntity: Skill::class,cascade: ['persist','remove'])]
     private Collection $skills;
 
     #[ORM\ManyToOne(inversedBy: 'CharacterSheet')]
@@ -346,5 +346,9 @@ class CharacterSheet
         $this->CharacterSheetUser = $CharacterSheetUser;
 
         return $this;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->getName();
     }
 }

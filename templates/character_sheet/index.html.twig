@@ -70,6 +70,8 @@
                 <th scope="col">name</th>
                 <th scope="col">Level</th>
                 <th scope="col">modifier</th>
+                <th scope="col">supprimez</th>
+
             </tr>
             </thead>
             <tbody>
@@ -79,6 +81,7 @@
                 <td>{{ skill.level}}</td>
                 <td>{{ skill.name }}</td>
                 <td><a class="btn btn-primary" href="{{ path('app_skill_update',{'id':skill.id}) }}">modifier</a></td>
+                <td><a class="btn btn-danger" href="{{ path('app_character_sheet_remove_skill',{'id':skill.id}) }}">supprimez</a></td>
 
             </tr>
             {% endfor %}
@@ -104,6 +107,8 @@
                     <td>{{ equipement.range}}</td>
                     <td>{{ equipement.damage}}</td>
                     <td><a class="btn btn-primary" href="{{ path('app_equipement_update',{'id':equipement.id}) }}">modifier</a></td>
+                    <td><a class="btn btn-danger" href="{{ path('app_character_sheet_remove_equipement',{'id':equipement.id}) }}">supprimez</a></td>
+
 
                 </tr>
             {% endfor %}

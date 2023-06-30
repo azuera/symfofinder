@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-{{ form_start(form) }}
+    {{ form_start(form) }}
     {{ form_row(form.name) }}
     {{ form_row(form.race) }}
     {{ form_row(form.class) }}
@@ -16,6 +16,36 @@
     {{ form_row(form.intelligence) }}
     {{ form_row(form.wisdom) }}
     {{ form_row(form.luck) }}
+
+    <h3>{{ form_label(form.skills) }}</h3>
+    <button type="button" class="add_item_link" data-collection-holder-class="skills">Add a skill</button>
+    <ul class="skills"
+        data-index="{{ form.skills|length > 0 ? form.skills|last.vars.name + 1 : 0 }}"
+        data-prototype="{{ form_widget(form.skills.vars.prototype)|e('html_attr') }}"
+    >
+        >
+        {% for skillForm in form.skills %}
+            <li>{{ form_widget(skillForm) }}</li>
+        {% endfor %}
+    </ul>
+
+    <h3>{{ form_label(form.equipements) }}</h3>
+    <button type="button" class="add_item_link" data-collection-holder-class="equipements">Add a equipement</button>
+
+    <ul class="equipements"
+        data-index="{{ form.equipements|length > 0 ? form.equipements|last.vars.name + 1 : 0 }}"
+        data-prototype="{{ form_widget(form.equipements.vars.prototype)|e('html_attr') }}"
+    >
+        {% for equipementForm in form.equipements %}
+            <li>{{ form_widget(equipementForm) }}</li>
+        {% endfor %}
+    </ul>
+
+
+
     <button type="submit" class="btn btn-primary">valider</button>
-{{ form_end(form) }}
+    {{ form_end(form) }}
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/collection.js') }}"></script>
 {% endblock %}

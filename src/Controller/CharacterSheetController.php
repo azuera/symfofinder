@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\CharacterSheet;
+use App\Entity\Equipement;
+use App\Entity\Skill;
 use App\Entity\User;
 use App\Form\CharacterSheetType;
 
@@ -35,6 +37,10 @@ class CharacterSheetController extends AbstractController
             $user = $this -> getUser();
             $characterSheet = new CharacterSheet();
             $characterSheet -> setCharacterSheetUser($user);
+            $equipement = new Equipement();
+            $characterSheet->addEquipement($equipement);
+            $skill = new Skill();
+            $characterSheet->addSkill($skill);
         }
 
         $form = $this -> createForm(CharacterSheetType::class, $characterSheet);
@@ -60,6 +66,28 @@ class CharacterSheetController extends AbstractController
     {
 
         $entityManager->remove($characterSheet);
+        $entityManager->flush();
+
+        return $this -> redirectToRoute('app_user_index');
+
+
+    }
+    #[Route('/character/sheet/skill/remove/{id}', name: 'app_character_sheet_remove_skill', requirements: ['id' => '\d+'])]
+    public function removeSkill(Skill $skill , EntityManagerInterface $entityManager): Response
+    {
+
+        $entityManager->remove($skill);
+        $entityManager->flush();
+
+        return $this -> redirectToRoute('app_user_index');
+
+
+    }
+    #[Route('/character/sheet/equipement/remove/{id}', name: 'app_character_sheet_remove_equipement', requirements: ['id' => '\d+'])]
+    public function removeEquipement(Equipement $equipement , EntityManagerInterface $entityManager): Response
+    {
+
+        $entityManager->remove($equipement);
         $entityManager->flush();
 
         return $this -> redirectToRoute('app_user_index');

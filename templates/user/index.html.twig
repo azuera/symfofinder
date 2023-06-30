@@ -38,7 +38,7 @@
                     <td>{{ characterSheet.race }}</td>
                     <td><a class="btn btn-success" href="{{ path('app_character_sheet',{'id':characterSheet.id}) }}">voir la feuille </a></td>
                     <td><a class="btn btn-dark" href="{{ path('app_characterSheet_update',{'id':characterSheet.id}) }}">modifier la feuille </a></td>
-                    <td><a class="btn btn-primary" href="{{ path('app_character_sheet_remove',{'id':characterSheet.id}) }}">supp la feuille </a></td>
+                    <td><a class="btn btn-danger" href="{{ path('app_character_sheet_remove',{'id':characterSheet.id}) }}">supp la feuille </a></td>
 
                 </tr>
             {% endfor %}
