@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\CharacterSheet;
 use App\Entity\Game;
+use App\Entity\GameMaster;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;

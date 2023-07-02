@@ -24,7 +24,7 @@ class UserFixtures extends Fixture
             $gameMaster->setEmail('azueraMj'.$i.'@mail.com');
             $password = $this->hasher->hashPassword($gameMaster, 'aze123');
             $gameMaster->setPassword($password);
-            $gameMaster->setName('gameMaster.$i');
+            $gameMaster->setName('gameMaster'.$i);
             $manager->persist($gameMaster);
         }
         for ($i = 0; $i < 3; ++$i) {

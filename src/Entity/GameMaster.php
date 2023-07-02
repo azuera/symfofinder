@@ -10,12 +10,9 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: GameMasterRepository::class)]
 class GameMaster extends User
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
 
-    #[ORM\OneToMany(mappedBy: 'gameMaster', targetEntity: Game::class)]
+
+    #[ORM\OneToMany(mappedBy: 'gameMaster', targetEntity: Game::class, orphanRemoval: true)]
     private Collection $game;
 
     public function __construct()
@@ -24,10 +21,7 @@ class GameMaster extends User
         $this->game = new ArrayCollection();
     }
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
+
 
     /**
      * @return Collection<int, Game>
