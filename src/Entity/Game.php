@@ -23,17 +23,16 @@ class Game
     private ?string $description = null;
 
     #[ORM\OneToMany(mappedBy: 'game', targetEntity: CharacterSheet::class)]
-    private Collection $CharacterSheet;
+    private Collection $characterSheet;
 
-    #[ORM\ManyToOne(inversedBy: 'Game')]
-    private ?User $gamer = null;
+
 
     #[ORM\ManyToOne(inversedBy: 'game')]
     private ?GameMaster $gameMaster = null;
 
     public function __construct()
     {
-        $this->CharacterSheet = new ArrayCollection();
+        $this->characterSheet = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -70,13 +69,13 @@ class Game
      */
     public function getCharacterSheet(): Collection
     {
-        return $this->CharacterSheet;
+        return $this->characterSheet;
     }
 
     public function addCharacterSheet(CharacterSheet $characterSheet): static
     {
-        if (!$this->CharacterSheet->contains($characterSheet)) {
-            $this->CharacterSheet->add($characterSheet);
+        if (!$this->characterSheet->contains($characterSheet)) {
+            $this->characterSheet->add($characterSheet);
             $characterSheet->setGame($this);
         }
 
@@ -85,7 +84,7 @@ class Game
 
     public function removeCharacterSheet(CharacterSheet $characterSheet): static
     {
-        if ($this->CharacterSheet->removeElement($characterSheet)) {
+        if ($this->characterSheet->removeElement($characterSheet)) {
             // set the owning side to null (unless already changed)
             if ($characterSheet->getGame() === $this) {
                 $characterSheet->setGame(null);
@@ -95,17 +94,7 @@ class Game
         return $this;
     }
 
-    public function getGamer(): ?User
-    {
-        return $this->gamer;
-    }
 
-    public function setGamer(?User $gamer): static
-    {
-        $this->gamer = $gamer;
-
-        return $this;
-    }
 
     public function getGameMaster(): ?GameMaster
     {

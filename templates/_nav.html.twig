@@ -26,6 +26,11 @@
                         <a class="nav-link active" aria-current="page" href="{{ path('app_user_index') }}">Mon compte</a>
                     </li>
                 {% endif %}
+                {% if is_granted('ROLE_GAMEMASTER') %}
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{ path('app_game_index') }}">Mes games</a>
+                    </li>
+                {% endif %}
                 {% if is_granted('ROLE_ADMIN') %}
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page"

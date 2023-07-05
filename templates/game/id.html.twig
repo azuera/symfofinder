@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container flex-wrap m-5">
+        <h3>{{ game.name }}</h3>
+        <div>{{ game.gameMaster.name }}</div>
+        <div>{{ game.description|nl2br }}</div>
+    </div>
+    <div class="container">
+        <h3 class="">Les personnages de mon histoire</h3>
+        <table class="table m-5">
+            <thead>
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">nom</th>
+                <th scope="col">classe</th>
+                <th scope="col">🔎</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for characterSheet in game.characterSheet %}
+                <tr>
+                    <th scope="row">{{ characterSheet.id }}</th>
+                    <td>{{ characterSheet.name }}</td>
+                    <td>{{ characterSheet.class }}</td>
+                    <td><a class="btn btn-success" href="{{ path('app_character_sheet',{'id':characterSheet.id}) }}">voir la feuille </a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="container">
+        <h3 class="">Ajouter des personnages</h3>
+        {{ form_start(form) }}
+        {{ form_rest(form) }}
+        <button type="submit" class="btn btn-success">ok</button>
+        {{ form_end(form) }}
+
+    </div>
+
+
+
+
+
+
+{% endblock %}
+

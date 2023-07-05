@@ -59,7 +59,7 @@ class CharacterSheetFixtures extends Fixture implements DependentFixtureInterfac
             $characterSheet->setIntelligence($intelligence);
             $characterSheet->setWisdom($wisdom);
             $characterSheet->setLuck($luck);
-            $characterSheet->setCharacterSheetUser($users[mt_rand(0, count($users) - 1)]);
+            $characterSheet->setUser($users[mt_rand(0, count($users) - 1)]);
             //            $characterSheet->setGame($games[mt_rand(0, count($games) - 1)]);
             //            $characterSheet->addSkill($skills[mt_rand(0, count($skills) + 1)]);
             //            $characterSheet->addEquipement($equipements[mt_rand(0, count($equipements) + 1)]);

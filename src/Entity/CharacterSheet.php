@@ -67,11 +67,11 @@ class CharacterSheet
     #[ORM\OneToMany(mappedBy: 'CharacterSheet', targetEntity: Skill::class,cascade: ['persist','remove'])]
     private Collection $skills;
 
-    #[ORM\ManyToOne(inversedBy: 'CharacterSheet')]
+    #[ORM\ManyToOne(inversedBy: 'characterSheet')]
     private ?Game $game = null;
 
-    #[ORM\ManyToOne(inversedBy: 'CharacterSheet')]
-    private ?User $CharacterSheetUser = null;
+    #[ORM\ManyToOne(inversedBy: 'characterSheets')]
+    private ?User $user = null;
 
     public function __construct()
     {
@@ -336,14 +336,14 @@ class CharacterSheet
         return $this;
     }
 
-    public function getCharacterSheetUser(): ?User
+    public function getUser(): ?User
     {
-        return $this->CharacterSheetUser;
+        return $this->user;
     }
 
-    public function setCharacterSheetUser(?User $CharacterSheetUser): static
+    public function setUser(?User $user): static
     {
-        $this->CharacterSheetUser = $CharacterSheetUser;
+        $this->user = $user;
 
         return $this;
     }

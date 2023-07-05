@@ -52,10 +52,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\OneToMany(mappedBy: 'gamer', targetEntity: Game::class)]
-    private Collection $game;
 
-    #[ORM\OneToMany(mappedBy: 'CharacterSheetUser', targetEntity: CharacterSheet::class)]
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: CharacterSheet::class)]
     private Collection $characterSheets;
 
     #[ORM\Column(nullable: true)]
@@ -63,7 +62,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function __construct()
     {
-        $this->game = new ArrayCollection();
+
         $this->characterSheets = new ArrayCollection();
     }
 
@@ -152,35 +151,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, Game>
-     */
-    public function getGame(): Collection
-    {
-        return $this->game;
-    }
 
-    public function addGame(Game $game): static
-    {
-        if (!$this->game->contains($game)) {
-            $this->game->add($game);
-            $game->setGamer($this);
-        }
 
-        return $this;
-    }
 
-    public function removeGame(Game $game): static
-    {
-        if ($this->game->removeElement($game)) {
-            // set the owning side to null (unless already changed)
-            if ($game->getGamer() === $this) {
-                $game->setGamer(null);
-            }
-        }
 
-        return $this;
-    }
+
+
 
     /**
      * @return Collection<int, CharacterSheet>
@@ -194,7 +170,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if (!$this->characterSheets->contains($characterSheet)) {
             $this->characterSheets->add($characterSheet);
-            $characterSheet->setCharacterSheetUser($this);
+            $characterSheet->setUser($this);
         }
 
         return $this;
@@ -204,8 +180,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if ($this->characterSheets->removeElement($characterSheet)) {
             // set the owning side to null (unless already changed)
-            if ($characterSheet->getCharacterSheetUser() === $this) {
-                $characterSheet->setCharacterSheetUser(null);
+            if ($characterSheet->getUser() === $this) {
+                $characterSheet->setUser(null);
             }
         }
 

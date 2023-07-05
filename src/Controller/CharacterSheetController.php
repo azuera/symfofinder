@@ -7,7 +7,6 @@ use App\Entity\Equipement;
 use App\Entity\Skill;
 use App\Entity\User;
 use App\Form\CharacterSheetType;
-
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -36,7 +35,7 @@ class CharacterSheetController extends AbstractController
             /** @var User $user */
             $user = $this -> getUser();
             $characterSheet = new CharacterSheet();
-            $characterSheet -> setCharacterSheetUser($user);
+            $characterSheet -> setUser($user);
             $equipement = new Equipement();
             $characterSheet->addEquipement($equipement);
             $skill = new Skill();

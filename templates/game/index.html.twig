@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Game{% endblock %}
+
+{% block body %}
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">nom de la partie</th>
+            <th scope="col">description de la partie</th>
+            <th scope="col">🔎</th>
+            <th scope="col">🔎</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for game in app.user.game %}
+        <tr>
+            <th scope="row">{{ game.id }}</th>
+            <td>{{ game.name }}</td>
+            <td>{{ game.description|slice(0,20) }}</td>
+            <td><a class="btn btn-primary" href="{{ path('app_game_update',{'id':game.id}) }}">modifier partie </a></td>
+            <td><a class="btn btn-primary" href="{{ path('app_game',{'id':game.id}) }}">voir partie </a></td>
+
+        </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+{% endblock %}
