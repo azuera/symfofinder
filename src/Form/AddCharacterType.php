@@ -13,7 +13,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class AddCharacterType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
-    {   $game = $options['data']->getGame();
+    {
         $builder
 
             ->add('characterSheet',EntityType::class,[
